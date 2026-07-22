@@ -1,0 +1,33 @@
+name = "adaxi-checkin"
+main = "src/index.ts"
+workers_dev = true
+compatibility_flags = ["nodejs_compat"]
+compatibility_date = "2025-09-17"
+upload_source_maps = true
+
+# Cloudflare Workers AI binding — used to OCR the captcha image
+[ai]
+binding = "AI"
+
+# Cron Triggers (UTC) — fires at the top of every hour.
+# scheduled() reads `scheduleHours` (Beijing-time hours, e.g. [8, 12, 21])
+# from KV and only actually runs the check-in if the current Beijing hour
+# is in that list. This lets the admin page change the schedule live
+# without redeploying.
+[triggers]
+crons = ["0 * * * *"]
+
+# KV namespace for storing schedule config, retry count, and check-in history.
+[[kv_namespaces]]
+binding = "CHECKIN_KV"
+id = "0f5caf1c203c40a59fedaa83ae1a9ea4"
+
+[observability]
+enabled = true
+
+# Secrets (set with `npx wrangler secret put <NAME>`):
+#   ADAXI_USERNAME  — adaxi.net login (username or email)
+#   ADAXI_PASSWORD  — adaxi.net login password
+#   ADMIN_USERNAME  — admin panel login username
+#   ADMIN_PASSWORD  — admin panel login password
+#   ADMIN_TOKEN     — bearer token to authorize manual HTTP trigger of /checkin

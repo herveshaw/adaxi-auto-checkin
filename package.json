@@ -1,0 +1,19 @@
+{
+  "name": "adaxi-checkin",
+  "version": "1.0.0",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Auto check-in for adaxi.net on Cloudflare Workers",
+  "scripts": {
+    "build": "tsc",
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "types": "wrangler types"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "typescript": "^5.8.3",
+    "wrangler": "^4.57.0"
+  }
+}
