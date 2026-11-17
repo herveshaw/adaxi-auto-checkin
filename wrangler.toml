@@ -20,7 +20,7 @@ crons = ["0 * * * *"]
 # KV namespace for storing schedule config, retry count, and check-in history.
 [[kv_namespaces]]
 binding = "CHECKIN_KV"
-id = "0f5caf1c203c40a59fedaa83ae1a9ea4"
+id = "066ea3cac76c4aebaab66fe6842936ba"
 
 [observability]
 enabled = true
